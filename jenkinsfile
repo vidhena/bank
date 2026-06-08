@@ -1,11 +1,29 @@
 pipeline {
-agent any
-stages {
-stage('Build') {
+    agent any
 
-steps {
-bat 'echo Building branch'
-}
-}
-}
+    stages {
+
+        stage('Compile') {
+            steps {
+                bat 'javac *.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                bat 'java Main'
+            }
+        }
+    }
+
+    post {
+
+        success {
+            echo 'Build Successful'
+        }
+
+        failure {
+            echo 'Build Failed'
+        }
+    }
 }
