@@ -19,7 +19,10 @@ pipeline {
     post {
 
         success {
-            echo 'Build Successful'
+
+            archiveArtifacts '*.class'
+
+            echo 'Build Successful and Artifacts Stored'
         }
 
         failure {
